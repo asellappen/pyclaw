@@ -61,7 +61,10 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
   - conda install -c conda-forge mpich mpi4py
-  -  conda install h5py
+ # -  conda install h5py
+  - export CC=mpicc
+  - export HDF5_MPI="ON"
+  - pip install --no-binary=h5py h5py
   - conda install matplotlib nose coverage
   - if [[ "$TRAVIS_CPU_ARCH" != "ppc64le" ]]; then 
       conda install -c clawpack hdf5-parallel h5py-parallel ;
